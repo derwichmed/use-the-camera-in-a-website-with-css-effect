@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="bootstrap.min.css"/>
+        <script src="jquery.js"></script>
+        <script>
+            $(function (){
+               $('button').click(function (){
+                  switch($(this).text()){
+                      case "blur": break;
+                      case "brightness": 
+                                $('#vedio').css('filter','blur(5px)');
+                                break;
+                      case "contrast": 
+                                $('#vedio').css('filter','brightness(400%)');
+                                break;
+                      case "drop-shadow":
+                                $('#vedio').css('filter','contrast(400%)');          
+                                break;
+                      case "grayscale": 
+                                $('#vedio').css('filter','drop-shadow(16px 16px 20px gray)');
+                                break;
+                      case "hue-rotate": 
+                                $('#vedio').css('filter','hue-rotate(180deg)');
+                                break;
+                  } 
+               });
+            });
+        </script>
+    </head>
+    <body class="container-fluid" style="
+          background-color: #e8e8e8
+          ">
+        <section class="row justify-content-center">
+            <div class="col-lg-6" style="padding: 0px">
+<button type="button" class="btn btn-success">blur</button>
+<button type="button" class="btn btn-danger">brightness</button>
+<button type="button" class="btn btn-warning">contrast</button>
+<button type="button" class="btn btn-info">drop-shadow</button>
+<button type="button" class="btn btn-light">grayscale</button>
+<button type="button" class="btn btn-dark">hue-rotate</button>
+            </div>
+        </section>
+        <section class="row justify-content-center" style="margin-top: 20px">
+            <div class="col-lg-9" style="
+                 border-radius: 12px;
+                 border-top: #007bff 70px solid;
+                 border-bottom: #007bff 70px solid;
+                 padding: 0px;
+                 background-color: white
+                 ">
+                <hr style="
+                    background-color: #007bff;
+                    height: 10px;
+                    margin-top: 8px
+                    "/>
+                <div class="container-fluid">
+                    <div class="row">
+                       
+                            <video class="col"  autoplay="" id="vedio" style="
+                                height: 450px;
+                                ">
+                            
+                            </video>
+                    </div>
+                </div>
+                <hr style="
+                    background-color: #007bff;
+                    height: 10px;
+                    margin-top: 8px
+                    "/>
+            </div>
+            
+        </section>
+        <script>
+            (function (){
+                var video = document.getElementById('vedio'),
+                    vendorUrl = window.URL || window.webkitURL;
+                navigator.getMedia =    navigator.getUserMedia ||
+                                        navigator.webkitGetUserMedia ||
+                                        navigator.mozGetUserMedia ||
+                                        navigator.msGetUserMedia;
+                navigator.getMedia({
+                    video: true,
+                    audio: false
+                }, function(stream) {
+                       video.src = vendorUrl.createObjectURL(stream);
+                       video.play();
+                }, function (error){ 
+                    
+                });
+    })();
+        </script>
+    </body>
+</html>
